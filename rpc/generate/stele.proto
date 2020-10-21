@@ -1,0 +1,48 @@
+syntax = "proto3";
+package generate;
+option go_package = ".;generate";
+
+service Stele {
+  rpc Set(SteleKV) returns (SteleStatus);
+  rpc Get(SteleK) returns (SteleVal);
+
+  // Batch Insertion Failure Rollback. 批量插入 失败 回滚
+  rpc BatchSet(BatchSetKVs) returns (SteleStatus);
+  // Batch Get. 批量查询
+  rpc BatchGet(SteleKS) returns (BatchSetKVs);
+  // Iterate over all keys. 遍历所有Key
+  rpc IterateKeys(SteleRequest) returns (SteleKS);
+  // Iterate over keys and values. 遍历Key和value
+  rpc IterateKeysAndValues(SteleRequest) returns (BatchSetKVs);
+  // Prefix Scan. 前缀扫描
+  rpc PrefixScan(Prefix) returns (BatchSetKVs);
+}
+
+message Prefix {
+  bytes prefix = 1;
+}
+
+message SteleKS {
+  repeated bytes keys = 1;
+}
+
+message SteleK {
+  bytes key = 1;
+}
+
+message SteleVal {
+  bytes val = 1;
+}
+
+message SteleKV {
+  bytes key = 1;
+  bytes val = 2;
+  int32 ttl = 3;
+}
+
+message BatchSetKVs {
+  repeated SteleKV kvs = 1;
+}
+
+message SteleStatus {}
+message SteleRequest {}

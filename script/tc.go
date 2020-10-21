@@ -1,4 +1,4 @@
-package main
+package script
 
 import (
 	"fmt"
@@ -75,15 +75,15 @@ func batchSet(db *badger.DB) {
 	batch := db.NewWriteBatch()
 	defer batch.Cancel()
 	testP := map[string]string{
-		"sp1": "sssp1",
-		"sp2": "sssp2",
-		"sp3": "sssp3",
-		"sp4": "sssp4",
-		"sp5": "sssp5",
-		"sp6": "sssp5",
-		"sp7": "sssp5",
-		"sp8": "sssp5",
-		"sp9": "sssp5",
+		"sp1":  "sssp1",
+		"sp2":  "sssp2",
+		"sp3":  "sssp3",
+		"sp4":  "sssp4",
+		"sp5":  "sssp5",
+		"sp6":  "sssp5",
+		"sp7":  "sssp5",
+		"sp8":  "sssp5",
+		"sp9":  "sssp5",
 		"sp10": "sssp5",
 		"sp11": "sssp5",
 		"sp12": "sssp5",
@@ -125,7 +125,7 @@ func iteratingOverKeys(db *badger.DB) {
 			}
 		}
 		return nil
-	});err != nil {
+	}); err != nil {
 		log.Println(err)
 	}
 }

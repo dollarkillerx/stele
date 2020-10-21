@@ -1,7 +1,9 @@
 # Stele (Stele Distributed KV based on badger)
-### 目标是实现通过配置 灵活切换CP AP 模式的分布式KV
+### The goal is to achieve a distributed KV with configuration flexibility to switch CP AP modes.
 
-### 分支说明
-- main 为分布式版本
-- node 为单节点badger的grpc包装
-- explore 系统设计的探索
+### Branch Description
+- main is the distributed version
+- node is a grpc wrapper for a single-node badger.
+- explore explore system design
+
+### Node Single Node Version
