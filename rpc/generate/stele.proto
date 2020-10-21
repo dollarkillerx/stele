@@ -37,7 +37,7 @@ message SteleVal {
 message SteleKV {
   bytes key = 1;
   bytes val = 2;
-  int32 ttl = 3;
+  int64 ttl = 3;
 }
 
 message BatchSetKVs {
