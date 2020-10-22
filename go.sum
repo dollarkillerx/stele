@@ -29,6 +29,8 @@ github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2 h1:tdlZCpZ/P9DhczC
 github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2/go.mod h1:SqUrOPUnsFjfmXRMNPybcSiG0BgUW2AuFH8PAnS2iTw=
 github.com/dollarkillerx/env v1.0.0 h1:szKfce1F886NIGAro4UBWmB/xTQBKgRgLkMdCSN7xDQ=
 github.com/dollarkillerx/env v1.0.0/go.mod h1:AmffxnS33nG8adavQbDogBG85TId7oJCRJqVBuALWPs=
+github.com/dollarkillerx/env v1.0.1 h1:9BMbGro9hmtXkm1DYQ8IZIPbzi/SWYP4gk6LJjaZ0wE=
+github.com/dollarkillerx/env v1.0.1/go.mod h1:AmffxnS33nG8adavQbDogBG85TId7oJCRJqVBuALWPs=
 github.com/dustin/go-humanize v1.0.0 h1:VSnTsYCnlFHaM2/igO1h6X3HA71jcobQuxemgkq4zYo=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=

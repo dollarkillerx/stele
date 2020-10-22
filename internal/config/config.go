@@ -23,7 +23,11 @@ func InitConfig() *BaseConfig {
 	var conf BaseConfig
 	cfg, err := ioutil.ReadFile("./configs/config.yaml")
 	if err != nil {
-		if err := env.Fill(&conf); err == nil {
+		if err := env.FillBase(&conf); err == nil {
+			conf.Debug = false
+			if conf.StoragePath == "" {
+				conf.StoragePath = ".stele"
+			}
 			return &conf
 		}
 		log.Fatalln(fmt.Errorf("InitConfig Error: %s", err.Error()))

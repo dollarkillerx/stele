@@ -10,7 +10,7 @@ package() {
   docker build -f $source_path/Dockerfile -t $image_name  .
   docker save -o stele.tar $image_name
 
-  rm -f $source_path/caesar
+  rm -f $source_path/stele
 }
 
 deploy() {

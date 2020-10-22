@@ -1,0 +1,5 @@
+SocketAddr: "0.0.0.0:9695"
+Username: "root"
+Password: "root"
+StoragePath: ".stele"
+Debug: true
