@@ -1,17 +1,3 @@
-# Stele (Stele Distributed KV based on badger)
-### The goal is to achieve a distributed KV with configuration flexibility to switch CP AP modes.
-
-### Branch Description
-
-- main is the distributed version
-- node is a grpc wrapper for a single-node badger.
-- explore explore system design
-
-### Node Single Node Version
-RUN `docker run --name stele -d --restart=always -p9695:9695 -e SOCKETADDR="0.0.0.0:9695" -e USERNAME="root" -e PASSWORD="root" dollarkiller/stele:latest`
-
-example
-```go
 package main
 
 import (
@@ -24,7 +10,7 @@ import (
 func main() {
 	log.SetFlags(log.Llongfile | log.LstdFlags)
 
-	db, err := stele.New("127.0.0.1:9695", "root", "root")
+	db, err := stele.New("0.0.0.0:9695", "root", "root")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -105,4 +91,3 @@ func main() {
 	}
 	log.Println(val)
 }
-```

@@ -1,15 +1,12 @@
 # Stele (Stele Distributed KV based on badger)
-### The goal is to achieve a distributed KV with configuration flexibility to switch CP AP modes.
+### 目标是实现通过配置 灵活切换CP AP 模式的分布式KV
 
-### Branch Description
+### 分支说明
+- main 为分布式版本
+- node 为单节点badger的grpc包装
+- explore 系统设计的探索
 
-- main is the distributed version
-- node is a grpc wrapper for a single-node badger.
-- explore explore system design
-
-### Node Single Node Version
-RUN `docker run --name stele -d --restart=always -p9695:9695 -e SOCKETADDR="0.0.0.0:9695" -e USERNAME="root" -e PASSWORD="root" dollarkiller/stele:latest`
-
+### Node 单节点版本
 example
 ```go
 package main
