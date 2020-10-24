@@ -103,3 +103,5 @@ func main() {
 	log.Println(val)
 }
 ```
+
+注意如果使用1.5+的go 需要配置`export GODEBUG=x509ignoreCN=0`  因为1.5证书的没有使用 Common Name 

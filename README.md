@@ -106,3 +106,5 @@ func main() {
 	log.Println(val)
 }
 ```
+
+Note that if you use 1.5+ go you need to configure `export GODEBUG=x509ignoreCN=0` because 1.5 certificates don't use Common Name. 
