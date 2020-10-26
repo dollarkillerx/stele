@@ -2,6 +2,8 @@ package stele
 
 import (
 	"context"
+	"crypto/x509"
+	"fmt"
 	"strings"
 	"time"
 
@@ -18,7 +20,12 @@ type Stele struct {
 func New(socketAddr string, username string, password string) (*Stele, error) {
 	creds, err := credentials.NewClientTLSFromFile("cert/servermpe", "stele")
 	if err != nil {
-		return nil, err
+		cp := x509.NewCertPool()
+		if !cp.AppendCertsFromPEM([]byte(DEFPEM)) {
+			return nil, fmt.Errorf("credentials: failed to append certificates")
+		}
+		cert := credentials.NewClientTLSFromCert(cp, "stele")
+		creds = cert
 	}
 
 	dial, err := grpc.Dial(socketAddr, grpc.WithTransportCredentials(creds), grpc.WithPerRPCCredentials(&loginCreds{
@@ -138,3 +145,24 @@ func IsNotFund(err error) bool {
 	}
 	return true
 }
+
+
+
+const DEFPEM = `
+-----BEGIN CERTIFICATE-----
+MIICkTCCAhagAwIBAgIUZ4P3/G89mAjAQQXmvZYo/V+7P0QwCgYIKoZIzj0EAwIw
+fzELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAmZzMQswCQYDVQQHDAJmczELMAkGA1UE
+CgwCZnMxCzAJBgNVBAsMAmZzMQ4wDAYDVQQDDAVzdGVsZTEsMCoGCSqGSIb3DQEJ
+ARYdZG9sbGFya2lsbGVyQGRvbGxhcmtpbGxlci5jb20wHhcNMjAxMDIyMDYyMDA1
+WhcNMzAxMDIwMDYyMDA1WjB/MQswCQYDVQQGEwJVUzELMAkGA1UECAwCZnMxCzAJ
+BgNVBAcMAmZzMQswCQYDVQQKDAJmczELMAkGA1UECwwCZnMxDjAMBgNVBAMMBXN0
+ZWxlMSwwKgYJKoZIhvcNAQkBFh1kb2xsYXJraWxsZXJAZG9sbGFya2lsbGVyLmNv
+bTB2MBAGByqGSM49AgEGBSuBBAAiA2IABLMM1en8+j1BaJviX7MKgskKcFTxiVGL
+qJXjVTNXTXLpucPL+5sYNgf2yCwfe8ZyVMXVkwRz0EZq7hWt3nlkjARYGboeWv3z
+DRh9iZQ8g2ujvI6OrxbCJUnsEeUpu8ao46NTMFEwHQYDVR0OBBYEFBr6tFVaPPoC
+74karowPAJe7fo7mMB8GA1UdIwQYMBaAFBr6tFVaPPoC74karowPAJe7fo7mMA8G
+A1UdEwEB/wQFMAMBAf8wCgYIKoZIzj0EAwIDaQAwZgIxAIQWE145lxYtL107FQ3c
+XR2Te7VGmohDhQrs7cUQhLtm6cmKKDHB5G3aoyJ2FgvMLwIxAKNlAQNreBumvn3j
+UhFcpb9e1GXhm3FncVXVpeJxOydaL50wAq5mRjvkJRSKMBffOQ==
+-----END CERTIFICATE-----
+`
