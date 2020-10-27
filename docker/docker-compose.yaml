@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  stele:
+    container_name: "stele"
+    image: dollarkiller/stele:latest
+    restart: always
+    environment:
+      SOCKETADDR: "0.0.0.0:8086"
+      USERNAME: "root"
+      PASSWORD: "root"
+      STORAGEPATH: "/var/lib/steledata"
+    ports:
+      - "8086:8086"
+    volumes:
+      - stele:/var/lib/steledata
+volumes:
+  stele:

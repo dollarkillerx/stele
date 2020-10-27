@@ -10,7 +10,7 @@ import (
 func main() {
 	log.SetFlags(log.Llongfile | log.LstdFlags)
 
-	db, err := stele.New("0.0.0.0:9695", "root", "root")
+	db, err := stele.New("0.0.0.0:8086", "root", "root")
 	if err != nil {
 		log.Fatalln(err)
 	}
