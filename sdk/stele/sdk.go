@@ -146,8 +146,6 @@ func IsNotFund(err error) bool {
 	return true
 }
 
-
-
 const DEFPEM = `
 -----BEGIN CERTIFICATE-----
 MIICkTCCAhagAwIBAgIUZ4P3/G89mAjAQQXmvZYo/V+7P0QwCgYIKoZIzj0EAwIw
