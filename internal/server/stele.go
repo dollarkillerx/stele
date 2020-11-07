@@ -2,20 +2,22 @@ package server
 
 import (
 	"context"
-	"github.com/dollarkillerx/stele/internal/config"
-	"github.com/dollarkillerx/stele/rpc/generate"
 	"log"
+
+	"github.com/dollarkillerx/stele/internal/config"
+	"github.com/dollarkillerx/stele/pkg/stele"
+	"github.com/dollarkillerx/stele/rpc/generate"
 )
 
 type SteleServer struct {
 	cfg *config.BaseConfig
-	db  *Local
+	db  *stele.Local
 }
 
 func NewStele(cfg *config.BaseConfig) *SteleServer {
 	var server SteleServer
 
-	local, err := NewLocal(cfg.StoragePath)
+	local, err := stele.NewLocal(cfg.StoragePath)
 	if err != nil {
 		log.Fatalln(err)
 	}

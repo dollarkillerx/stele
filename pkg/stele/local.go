@@ -1,4 +1,4 @@
-package server
+package stele
 
 import (
 	"errors"
@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/dgraph-io/badger/v2"
-	"github.com/dollarkillerx/stele/pkg/stele"
 	"github.com/dollarkillerx/stele/rpc/generate"
 )
 
@@ -48,7 +47,7 @@ func (l *Local) Get(key []byte) (value []byte, err error) {
 	})
 	if err != nil {
 		if errors.Is(err, badger.ErrKeyNotFound) {
-			return nil, stele.NotFund
+			return nil, NotFund
 		}
 	}
 

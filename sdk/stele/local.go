@@ -1,9 +1,9 @@
 package stele
 
 import (
-	"github.com/dollarkillerx/stele/internal/server"
+	"github.com/dollarkillerx/stele/pkg/stele"
 )
 
-func NewLocal(storagePath string) (*server.Local, error) {
-	return server.NewLocal(storagePath)
+func NewLocal(storagePath string) (*stele.Local, error) {
+	return stele.NewLocal(storagePath)
 }
