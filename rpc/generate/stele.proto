@@ -5,6 +5,8 @@ option go_package = ".;generate";
 service Stele {
   rpc Set(SteleKV) returns (SteleStatus);
   rpc Get(SteleK) returns (SteleVal);
+  rpc Delete(SteleK) returns (SteleStatus);
+
 
   // Batch Insertion Failure Rollback. 批量插入 失败 回滚
   rpc BatchSet(BatchSetKVs) returns (SteleStatus);

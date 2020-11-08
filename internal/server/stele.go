@@ -41,6 +41,15 @@ func (s *SteleServer) Get(ctx context.Context, req *generate.SteleK) (resp *gene
 	return resp, nil
 }
 
+func (s *SteleServer) Delete(ctx context.Context, req *generate.SteleK) (resp *generate.SteleStatus, err error) {
+	resp = &generate.SteleStatus{}
+	if err := s.db.Delete(req.Key); err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 // Batch Insertion Failure Rollback. 批量插入 失败 回滚
 func (s *SteleServer) BatchSet(ctx context.Context, req *generate.BatchSetKVs) (resp *generate.SteleStatus, err error) {
 	return &generate.SteleStatus{}, s.db.BatchSet(req.Kvs)

@@ -32,6 +32,11 @@ func (l *Local) Set(key, val []byte, tll int64) error {
 		return txn.SetEntry(entry)
 	})
 }
+func (l *Local) Delete(key []byte) error {
+	return l.db.View(func(txn *badger.Txn) error {
+		return txn.Delete(key)
+	})
+}
 
 func (l *Local) Get(key []byte) (value []byte, err error) {
 	err = l.db.View(func(txn *badger.Txn) error {
