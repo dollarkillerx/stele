@@ -61,6 +61,17 @@ func (s *Stele) Get(key []byte) (val []byte, err error) {
 	return resp.Val, nil
 }
 
+// Del
+// Params: key
+func (s *Stele) Del(key []byte) error {
+	_, err := s.stele.Delete(context.TODO(), &generate.SteleK{Key: key})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Batch Insertion Failure Rollback. 批量插入 失败 回滚
 // Params: datas: []map[key]val
 func (s *Stele) NewBatchSet() *BatchSet {
