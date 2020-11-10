@@ -33,7 +33,7 @@ func (l *Local) Set(key, val []byte, tll int64) error {
 	})
 }
 func (l *Local) Delete(key []byte) error {
-	return l.db.View(func(txn *badger.Txn) error {
+	return l.db.Update(func(txn *badger.Txn) error {
 		return txn.Delete(key)
 	})
 }
