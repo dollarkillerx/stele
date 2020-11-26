@@ -1,5 +1,5 @@
 # Stele (Stele Distributed KV based on badger)
-### The goal is to achieve a distributed KV with configuration flexibility to switch CP AP modes.
+### Distributed KV based on consistency hash
 
 ### Branch Description
 
