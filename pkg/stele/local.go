@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/dgraph-io/badger/v2"
+	"github.com/dgraph-io/badger/v3"
 	"github.com/dollarkillerx/stele/rpc/generate"
 )
 
@@ -32,6 +32,7 @@ func (l *Local) Set(key, val []byte, tll int64) error {
 		return txn.SetEntry(entry)
 	})
 }
+
 func (l *Local) Delete(key []byte) error {
 	return l.db.Update(func(txn *badger.Txn) error {
 		return txn.Delete(key)
@@ -59,7 +60,7 @@ func (l *Local) Get(key []byte) (value []byte, err error) {
 	return value, nil
 }
 
-// Batch Insertion Failure Rollback. 批量插入 失败 回滚
+// BatchSet Batch Insertion Failure Rollback. 批量插入 失败 回滚
 func (l *Local) BatchSet(kvs []*generate.SteleKV) error {
 	batch := l.db.NewWriteBatch()
 	defer batch.Cancel()
@@ -77,7 +78,7 @@ func (l *Local) BatchSet(kvs []*generate.SteleKV) error {
 	return batch.Flush()
 }
 
-// Batch Get. 批量查询
+// BatchGet Batch Get. 批量查询
 func (l *Local) BatchGet(keys [][]byte) (kvs []*generate.SteleKV, err error) {
 	kvs = []*generate.SteleKV{}
 
@@ -99,7 +100,7 @@ func (l *Local) BatchGet(keys [][]byte) (kvs []*generate.SteleKV, err error) {
 	return kvs, nil
 }
 
-// Iterate over all keys. 遍历所有Key
+// IterateKeys Iterate over all keys. 遍历所有Key
 func (l *Local) IterateKeys() (keys [][]byte, err error) {
 	keys = [][]byte{}
 
@@ -119,7 +120,7 @@ func (l *Local) IterateKeys() (keys [][]byte, err error) {
 	return keys, nil
 }
 
-// Iterate over keys and values. 遍历Key和value
+// IterateKeysAndValues Iterate over keys and values. 遍历Key和value
 func (l *Local) IterateKeysAndValues() (kvs []*generate.SteleKV, err error) {
 	kvs = []*generate.SteleKV{}
 
@@ -147,7 +148,7 @@ func (l *Local) IterateKeysAndValues() (kvs []*generate.SteleKV, err error) {
 	return kvs, nil
 }
 
-// Prefix Scan. 前缀扫描
+// PrefixScan Prefix Scan. 前缀扫描
 func (l *Local) PrefixScan(prefix []byte) (kvs []*generate.SteleKV, err error) {
 	kvs = []*generate.SteleKV{}
 
